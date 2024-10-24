@@ -134,6 +134,11 @@
         var py = getY(cy,ds,0.9);
         line(ctx,cx,cy,px,py,5, 'rgb(128, 100, 255)')
     }
+    // Statusがクリックされた時の処理
+    function setDebugMode(e){
+        debug = !debug;
+        $("#status").html("Debug Mode: "+debug);
+    }
 
     // 残り秒数アナログ表示
     function analog(rest){
@@ -185,7 +190,13 @@
     function btnAClick(e){
         active = true;
         startTime = new Date();
+        alarm();
         
+        period = 60 * parseInt( $("#minute").val() ) + parseInt( $("#second").val() );
+        $("#time").html("経過時間: 0");
+        $("#remain").html("残り時間: " + period);
+        $("#btnA").prop("disabled",false);
+        $("#btnB").prop("disabled",true);
         
         
     }
@@ -219,9 +230,9 @@
 
             // 残り時間が40秒になったら背景を緑に、20秒になったら黄色に
             if (rest <= 40 && rest > 20) {
-                document.body.style.backgroundColor = 'green';
+                document.body.style.backgroundColor = 'lightgreen';
             } else if (rest <= 20) {
-                document.body.style.backgroundColor = 'yellow';
+                document.body.style.backgroundColor = 'lightyellow';
             } else {
                 document.body.style.backgroundColor = ''; // 元に戻す
             }
@@ -239,8 +250,8 @@
 <body>
     <canvas id="mycanvas" width="200" height="200">Test</canvas>
 
-    <div id="minuteStr">〇</div>
-    <div id="secondStr">〇</div>
+    <div id="minuteStr">New Clock</div>
+    <div id="secondStr">ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー</div>
 
     <div id="remain">Remaining time</div>
     <div id="time">Time</div>
