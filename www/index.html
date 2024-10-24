@@ -215,16 +215,24 @@
             rest = period - etime;
             $("#time").html("経過時間 ： " + etime);
             $("#remain").html("残り時間： " + rest); 
-            analog(rest);  
+            analog(rest);
 
+            // 残り時間が40秒になったら背景を緑に、20秒になったら黄色に
+            if (rest <= 40 && rest > 20) {
+                document.body.style.backgroundColor = 'green';
+            } else if (rest <= 20) {
+                document.body.style.backgroundColor = 'yellow';
+            } else {
+                document.body.style.backgroundColor = ''; // 元に戻す
+            }
         }
 
         if (rest == 0){
             active = false;
             alarm();
         }
-        
     } 
+            
 
   </script>
 </head>
