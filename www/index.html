@@ -198,7 +198,8 @@
         $("#btnA").prop("disabled",false);
         $("#btnB").prop("disabled",true);
         
-        
+        // Aボタンが押されたら「New Clock」を「Start」に変更
+        $("#minuteStr").html("Start");
     }
 
     // ButtonBがクリックされた時の処理
@@ -216,6 +217,9 @@
         $("#remain").html("残り時間: " + period);
         $("#btnA").prop("disabled",false);
         $("#btnB").prop("disabled",true);
+
+     // Aボタンが押されたら「Start」を「New Clock」に変更
+        $("#minuteStr").html("New Clock");   
     }
     
  
